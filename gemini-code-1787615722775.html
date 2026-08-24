@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f6f0;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Pantalla de Contraseña */
+        #login-screen {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        #login-screen h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        #login-screen p {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+
+        #password-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95em;
+            outline: none;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        #password-input:focus {
+            border-color: #b8a99a;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #b8a99a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #a39283;
+        }
+
+        #error-msg {
+            color: #e74c3c;
+            font-size: 0.85em;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Contenido Principal */
+        #main-content {
+            display: none;
+            max-width: 650px;
+            width: 100%;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-weight: 300;
+            color: #2c3e50;
+            font-size: 2em;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .section h3 {
+            color: #8c7b6b;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PANTALLA DE ACCESO -->
+    <div id="login-screen">
+        <h2>Un espacio para ti</h2>
+        <p>Introduce la frase clave para acceder</p>
+        <input type="password" id="password-input" placeholder="Escribe aquí la contraseña...">
+        <button onclick="checkPassword()">Entrar</button>
+        <p id="error-msg">Contraseña incorrecta</p>
+    </div>
+
+    <!-- CONTENIDO DEL SITIO -->
+    <div id="main-content">
+        <div class="header">
+            <h1>Gracias por todo</h1>
+        </div>
+
+        <div class="section">
+            <h3>Un mensaje importante</h3>
+            <p>
+                Escribo esto con mucho respeto y cariño por todo lo que compartimos. Hay etapas que cambian, pero el agradecimiento por los buenos momentos y todo lo aprendido se queda intacto.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3>Lo que siempre recordaré</h3>
+            <p>
+                Me quedo con las risas, el apoyo mutuo y cada instante donde nos acompañamos. Te deseo de corazón lo mejor en cada proyecto y meta que te propongas.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Con respeto y los mejores deseos siempre.</p>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const correctPassword = "siempre seras la persona mas bonita que me dio la vida";
+            const errorMsg = document.getElementById('error-msg');
+
+            // Comprobación ignorando mayúsculas/minúsculas
+            if (input.trim().toLowerCase() === correctPassword.toLowerCase()) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // Permite presionar Enter para enviar
+        document.getElementById('password-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>

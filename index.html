@@ -117,6 +117,18 @@
             margin-bottom: 10px;
         }
 
+        /* Controls de Audio */
+        .audio-player {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        audio {
+            height: 35px;
+            outline: none;
+        }
+
         .letter-content p {
             margin-bottom: 22px;
             font-size: 1.05em;
@@ -164,7 +176,7 @@
     <!-- PANTALLA DE ACCESO -->
     <div id="login-screen">
         <h2>Un espacio para ti</h2>
-        <p>Introduce la frase para acceder</p>
+        <p>Introduce la frase clave para acceder</p>
         <input type="password" id="password-input" placeholder="Escribe la frase de acceso...">
         <button onclick="checkPassword()">Entrar</button>
         <p id="error-msg">Frase incorrecta. Inténtalo de nuevo.</p>
@@ -174,6 +186,13 @@
     <div id="main-content">
         <div class="header">
             <h1>Hola...</h1>
+            <!-- Reproductor de audio con control visible por si quiere pausarlo -->
+            <div class="audio-player">
+                <audio id="background-music" controls loop>
+                    <source src="cancion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            </div>
         </div>
 
         <div class="letter-content">
@@ -193,7 +212,7 @@
 
             <p>De corazón deseo que te vaya bien en todo. Que cumplas cada una de tus metas, que encuentres personas que te quieran bonito y que siempre tengas motivos para sonreír. Mereces cosas buenas y espero que la vida te las regale.</p>
 
-            <p>Voy a echarte de menos, eso no lo puedo negar. echare de menos tu forma de ser, nuestras conversaciones, tus ocurrencias y todas esas pequeñas cosas que hicieron que te volvieras especial para mí. Pero también entiendo que seguir aferrándome a algo que ya terminó solo me impediría avanzar.</p>
+            <p>Voy a extrañarte, eso no lo puedo negar. Extrañaré tu forma de ser, nuestras conversaciones, tus ocurrencias y todas esas pequeñas cosas que hicieron que te volvieras especial para mí. Pero también entiendo que seguir aferrándome a algo que ya terminó solo me impediría avanzar.</p>
 
             <p>Así que me despido agradecido por todo lo que vivimos.</p>
 
@@ -212,10 +231,16 @@
             const input = document.getElementById('password-input').value;
             const correctPassword = "siempre seras la persona mas bonita que me dio la vida";
             const errorMsg = document.getElementById('error-msg');
+            const audio = document.getElementById('background-music');
 
             if (input.trim().toLowerCase() === correctPassword.toLowerCase()) {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
+                
+                // Reproduce el audio automáticamente al desbloquear
+                audio.play().catch(function(error) {
+                    console.log("El reproductor requiere interacción adicional o el archivo no existe.");
+                });
             } else {
                 errorMsg.style.display = 'block';
             }

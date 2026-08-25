@@ -9,127 +9,153 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', serif;
         }
 
         body {
-            background-color: #f9f6f0;
-            color: #4a4a4a;
+            background: #f4efea;
+            color: #3d3b3a;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 20px 10px;
         }
 
         /* Pantalla de Contraseña */
         #login-screen {
             background: #ffffff;
-            padding: 40px 30px;
+            padding: 50px 30px;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             text-align: center;
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
         }
 
         #login-screen h2 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: 400;
+            font-family: 'Segoe UI', sans-serif;
+            color: #2c2a29;
+            margin-bottom: 12px;
+            font-weight: 300;
+            font-size: 1.6em;
         }
 
         #login-screen p {
-            font-size: 0.9em;
-            color: #7f8c8d;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.88em;
+            color: #8c8580;
             margin-bottom: 25px;
+            line-height: 1.5;
         }
 
         #password-input {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
+            padding: 14px 16px;
+            border: 1px solid #dcd5ce;
             border-radius: 8px;
-            font-size: 0.95em;
+            font-size: 0.9em;
             outline: none;
             margin-bottom: 15px;
+            text-align: center;
             transition: border-color 0.3s;
         }
 
         #password-input:focus {
-            border-color: #b8a99a;
+            border-color: #a89485;
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #b8a99a;
+            padding: 14px;
+            background-color: #a89485;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1em;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.95em;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #a39283;
+            background-color: #917d6f;
         }
 
         #error-msg {
-            color: #e74c3c;
+            font-family: 'Segoe UI', sans-serif;
+            color: #c0392b;
             font-size: 0.85em;
-            margin-top: 10px;
+            margin-top: 12px;
             display: none;
         }
 
         /* Contenido Principal */
         #main-content {
             display: none;
-            max-width: 650px;
+            max-width: 680px;
             width: 100%;
             background: #ffffff;
-            padding: 40px;
+            padding: 60px 45px;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            animation: fadeIn 1s ease-in-out;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.04);
+            animation: fadeIn 1.5s ease-in-out;
+            line-height: 1.9;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 20px;
+            margin-bottom: 45px;
+            border-bottom: 1px solid #f0eae4;
+            padding-bottom: 25px;
         }
 
         .header h1 {
             font-weight: 300;
-            color: #2c3e50;
+            color: #2c2a29;
             font-size: 2em;
-        }
-
-        .section {
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .section h3 {
-            color: #8c7b6b;
             margin-bottom: 10px;
-            font-weight: 500;
+        }
+
+        .letter-content p {
+            margin-bottom: 22px;
+            font-size: 1.05em;
+            color: #4a4745;
+            text-align: justify;
+        }
+
+        .letter-content p.quote {
+            font-style: italic;
+            text-align: center;
+            color: #8c796b;
+            margin: 35px 0;
+            padding: 15px 20px;
+            border-top: 1px solid #f0eae4;
+            border-bottom: 1px solid #f0eae4;
         }
 
         .footer {
             text-align: center;
-            margin-top: 40px;
-            font-style: italic;
-            color: #95a5a6;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #f0eae4;
+            color: #a09790;
             font-size: 0.9em;
+            font-style: italic;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            #main-content {
+                padding: 35px 25px;
+            }
+            .letter-content p {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -139,33 +165,45 @@
     <div id="login-screen">
         <h2>Un espacio para ti</h2>
         <p>Introduce la frase clave para acceder</p>
-        <input type="password" id="password-input" placeholder="Escribe aquí la contraseña...">
+        <input type="password" id="password-input" placeholder="Escribe la frase de acceso...">
         <button onclick="checkPassword()">Entrar</button>
-        <p id="error-msg">Contraseña incorrecta</p>
+        <p id="error-msg">Frase incorrecta. Inténtalo de nuevo.</p>
     </div>
 
-    <!-- CONTENIDO DEL SITIO -->
+    <!-- CONTENIDO DE LA CARTA -->
     <div id="main-content">
         <div class="header">
-            <h1>Gracias por todo</h1>
+            <h1>Hola...</h1>
         </div>
 
-        <div class="section">
-            <h3>Un mensaje importante</h3>
-            <p>
-                Escribo esto con mucho respeto y cariño por todo lo que compartimos. Hay etapas que cambian, pero el agradecimiento por los buenos momentos y todo lo aprendido se queda intacto.
-            </p>
-        </div>
+        <div class="letter-content">
+            <p>No sé si estés leyendo esto, pero necesito expresar esto antes de cerrar este capítulo de mi vida.</p>
 
-        <div class="section">
-            <h3>Lo que siempre recordaré</h3>
-            <p>
-                Me quedo con las risas, el apoyo mutuo y cada instante donde nos acompañamos. Te deseo de corazón lo mejor en cada proyecto y meta que te propongas.
-            </p>
+            <p>La verdad es que nunca quise que esto terminara así. Hice todo lo que estuvo en mis manos para intentar salvar lo que teníamos, porque para mí valía la pena luchar por ti. Sin embargo, también entendí que no podía seguir insistiendo cuando esto ya no daba para más.</p>
+
+            <p>Por eso hoy decido soltarte, aunque me duela más de lo que puedo explicar.</p>
+
+            <p>Antes que nada, gracias. Gracias por cada momento, cada conversación, cada abrazo y cada recuerdo que construimos juntos. Tal vez para otras personas fueron cosas simples, pero para mí significaron muchísimo. Cada vez que estaba contigo sentía una tranquilidad que pocas veces había encontrado en alguien y a su vez me sentía tan vivo.</p>
+
+            <p>Llegaste a mi vida cuando menos lo esperaba y lograste convertirte en una de las personas más importantes para mí. Me hiciste creer en algo bonito, en la posibilidad de compartir mi vida con alguien que realmente quería. Por un tiempo imaginé un futuro contigo y fui feliz haciéndolo. Aunque nuestra historia no duró todo lo que me hubiera gustado, fue suficiente para dejar una huella que difícilmente voy a olvidar. Contigo aprendí muchas cosas, me conocí mejor y experimenté sentimientos que nunca había sentido con la misma intensidad.</p>
+
+            <p>También quiero pedirte perdón por mis errores. Perdón por las veces en las que mis inseguridades, mis miedos o mis decisiones terminaron haciéndote daño. Nunca fue mi intención hacerte daño y lamento profundamente no haber sabido cuidar mejor lo que teníamos.</p>
+
+            <p class="quote">"Siempre serás la persona más bonita que me dio la vida."</p>
+
+            <p>De corazón deseo que te vaya bien en todo. Que cumplas cada una de tus metas, que encuentres personas que te quieran bonito y que siempre tengas motivos para sonreír. Mereces cosas buenas y espero que la vida te las regale.</p>
+
+            <p>Voy a extrañarte, eso no lo puedo negar. Extrañaré tu forma de ser, nuestras conversaciones, tus ocurrencias y todas esas pequeñas cosas que hicieron que te volvieras especial para mí. Pero también entiendo que seguir aferrándome a algo que ya terminó solo me impediría avanzar.</p>
+
+            <p>Así que me despido agradecido por todo lo que vivimos.</p>
+
+            <p>Cuídate mucho. Descansa cuando lo necesites, come bien, no dejes de perseguir tus sueños y recuerda siempre el valor que tienes. Aunque nuestros caminos ya no sigan juntos, siempre voy a guardar un cariño enorme por ti.</p>
+
+            <p>Y si algún día pienso en nosotros, no lo haré con rencor ni tristeza, sino con gratitud por haber coincidido contigo.</p>
         </div>
 
         <div class="footer">
-            <p>Con respeto y los mejores deseos siempre.</p>
+            <p>Gracias por todo.</p>
         </div>
     </div>
 
@@ -175,7 +213,6 @@
             const correctPassword = "siempre seras la persona mas bonita que me dio la vida";
             const errorMsg = document.getElementById('error-msg');
 
-            // Comprobación ignorando mayúsculas/minúsculas
             if (input.trim().toLowerCase() === correctPassword.toLowerCase()) {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
@@ -184,7 +221,6 @@
             }
         }
 
-        // Permite presionar Enter para enviar
         document.getElementById('password-input').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 checkPassword();
